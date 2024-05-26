@@ -1,0 +1,161 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://EndScreen.gd" type="Script" id=1]
+[ext_resource path="res://Title_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Default_theme.tres" type="Theme" id=3]
+
+[sub_resource type="Animation" id=2]
+resource_name = "Lose_anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath("LoseLabel:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 2.73208, 0.34151, 1 ),
+"update": 0,
+"values": [ Vector2( 262.001, -183 ), Vector2( 262.001, 200 ), Vector2( 262.001, 200 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("LoseLabel:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 262.001, -200 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WinLabel:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -500, 209.965 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("WinLabel:rect_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Speed"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("WinLabel:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -30.0, 30.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WinLabel:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.75, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 250, 200 ), Vector2( 270, 210 ), Vector2( 250, 200 ) ]
+}
+
+[node name="EndScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+screen_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+
+[node name="WinLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1012.0
+margin_top = -90.035
+margin_right = -512.01
+margin_bottom = 109.96
+rect_pivot_offset = Vector2( 250, 100 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
+text = "SPEED!"
+align = 1
+valign = 1
+
+[node name="LoseLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -249.999
+margin_top = -500.0
+margin_right = 249.999
+margin_bottom = -300.0
+rect_pivot_offset = Vector2( 250, 100 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
+text = "Uh, Oh..."
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Lose_anim = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+anims/Speed = SubResource( 1 )
+
+[node name="PlayerCount" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -107.0
+margin_top = -110.0
+margin_right = -65.0
+margin_bottom = -75.0
+text = "00"
+align = 1
+valign = 1
+
+[node name="RivalCount" type="Label" parent="."]
+margin_left = 67.0
+margin_top = 31.0
+margin_right = 109.0
+margin_bottom = 66.0
+text = "00"
+align = 1
+valign = 1

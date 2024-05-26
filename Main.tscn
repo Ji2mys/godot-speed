@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://PlayerDeck.tscn" type="PackedScene" id=2]
+[ext_resource path="res://PlayerHand.gd" type="Script" id=3]
+[ext_resource path="res://CardField.tscn" type="PackedScene" id=4]
+[ext_resource path="res://EndScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Cards/cardBack_blue4.png" type="Texture" id=6]
+[ext_resource path="res://FadeNode.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Music/Straight Fuse - French Fuse.mp3" type="AudioStream" id=8]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform vec4 fog_color : hint_color;
+
+void fragment() {
+	vec4 pixColor = texture(TEXTURE, UV + TIME * 0.05);
+	vec4 pixColor2 = texture(TEXTURE, UV);
+	COLOR.a = (pixColor.r + pixColor2.r) * 0.2;
+	COLOR.rgb = fog_color.rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 5 )
+shader_param/fog_color = Color( 0.654902, 1, 0.572549, 1 )
+
+[sub_resource type="OpenSimplexNoise" id=6]
+
+[sub_resource type="NoiseTexture" id=4]
+width = 500
+height = 500
+seamless = true
+noise = SubResource( 6 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+material = SubResource( 2 )
+position = Vector2( 503, 290 )
+scale = Vector2( 2.2055, 2.2055 )
+texture = SubResource( 4 )
+
+[node name="PlayerDeck" parent="." instance=ExtResource( 2 )]
+position = Vector2( 937, 489 )
+
+[node name="RivalDeck" type="Sprite" parent="."]
+position = Vector2( 84, 0 )
+texture = ExtResource( 6 )
+
+[node name="PlayerHand" type="Position2D" parent="."]
+position = Vector2( 84, 489 )
+script = ExtResource( 3 )
+
+[node name="RivalHand" type="Position2D" parent="."]
+position = Vector2( 937, 0 )
+script = ExtResource( 3 )
+is_rival = true
+
+[node name="LeftCardField" parent="." instance=ExtResource( 4 )]
+position = Vector2( 416, 257 )
+
+[node name="RightCardField" parent="." instance=ExtResource( 4 )]
+position = Vector2( 586, 257 )
+
+[node name="RivalTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="LeftDeck" type="Sprite" parent="."]
+position = Vector2( 253, 257 )
+texture = ExtResource( 6 )
+
+[node name="RightDeck" type="Sprite" parent="."]
+position = Vector2( 750, 257 )
+texture = ExtResource( 6 )
+
+[node name="SupportDeckTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="EndScreen" parent="CanvasLayer" instance=ExtResource( 5 )]
+
+[node name="FadeNode" parent="CanvasLayer" instance=ExtResource( 7 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 8 )
+autoplay = true
+bus = "Music"
+
+[connection signal="timeout" from="RivalTimer" to="." method="_on_RivalTimer_timeout"]
+[connection signal="timeout" from="SupportDeckTimer" to="." method="_on_SupportDeckTimer_timeout"]

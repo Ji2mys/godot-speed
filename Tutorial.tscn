@@ -1,0 +1,936 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://FadeNode.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Cards/cardSpadesK.png" type="Texture" id=2]
+[ext_resource path="res://Mask.png" type="Texture" id=3]
+[ext_resource path="res://Black_background.png" type="Texture" id=4]
+[ext_resource path="res://Cards/cardClubs4.png" type="Texture" id=5]
+[ext_resource path="res://Cards/cardClubs7.png" type="Texture" id=6]
+[ext_resource path="res://Cards/cardHearts8.png" type="Texture" id=7]
+[ext_resource path="res://Default_theme.tres" type="Theme" id=8]
+[ext_resource path="res://Cards/cardClubsJ.png" type="Texture" id=9]
+[ext_resource path="res://Cards/cardDiamonds2.png" type="Texture" id=10]
+[ext_resource path="res://Cards/cardDiamonds4.png" type="Texture" id=11]
+[ext_resource path="res://Cards/cardDiamondsA.png" type="Texture" id=12]
+[ext_resource path="res://Cards/cardHeartsJ.png" type="Texture" id=13]
+[ext_resource path="res://Cards/cardSpades4.png" type="Texture" id=14]
+[ext_resource path="res://Cards/cardSpades7.png" type="Texture" id=15]
+[ext_resource path="res://Cards/cardSpadesA.png" type="Texture" id=16]
+[ext_resource path="res://Cards/cardBack_blue4.png" type="Texture" id=17]
+[ext_resource path="res://UI_textures/greySheet.png" type="Texture" id=18]
+[ext_resource path="res://Tutorial.gd" type="Script" id=19]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 fog_color : hint_color;
+
+void fragment() {
+	vec4 pixColor = texture(TEXTURE, UV + TIME * 0.05);
+	vec4 pixColor2 = texture(TEXTURE, UV);
+	COLOR.a = (pixColor.r + pixColor2.r) * 0.1;
+	COLOR.rgb = fog_color.rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/fog_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+
+[sub_resource type="NoiseTexture" id=5]
+width = 500
+height = 500
+seamless = true
+noise = SubResource( 3 )
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Foreground:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -152, -55 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ActionArea:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1171, 481 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerDeck/Card05:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PlayerDeck/Card05:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Light2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.57275, 0.57275 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("PlayerDeck/Card01:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -853, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("PlayerDeck/Card02:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -753, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("PlayerDeck/Card03:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -653, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("PlayerDeck/Card04:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -553, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("PlayerDeck/Card01:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("LeftPile:texture")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("PlayerDeck/Card01:z_index")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("PlayerDeck/Card01:texture")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Tutorial01"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Foreground:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.329412 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 0.307786 ),
+"update": 0,
+"values": [ Vector2( -152, -55 ), Vector2( -152, -55 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Tutorial02"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, 1 ),
+"update": 0,
+"values": [ Vector2( -152, -55 ), Vector2( 939, 490 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "show_dialog_top"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ActionArea:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 937, 489 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Tutorial03"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerDeck/Card05:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerDeck/Card05:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -453, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Light2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.2, 1 ),
+"update": 0,
+"values": [ Vector2( 939, 490 ), Vector2( 486, 490 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ActionArea:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1183, 250 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Tutorial04"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 486, 490 ), Vector2( 501, 254 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 0.57275, 0.57275 ), Vector2( 0.788925, 0.788925 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Tutorial05"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 501, 254 ), Vector2( 586, 257 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 0.788925, 0.788925 ), Vector2( 0.537989, 0.537989 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "Tutorial06"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 0.788925, 0.788925 ), Vector2( 0.508649, 0.508649 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 501, 254 ), Vector2( 84, 489 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ActionArea:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 84, 489 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "Tutorial07"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 84, 489 ), Vector2( 414, 259 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ActionArea:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 414, 259 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerDeck/Card01:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -853, 1 ), Vector2( -853, -23 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "Tutorial08"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 84, 489 ), Vector2( 414, 259 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerDeck/Card01:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -853, -23 ), Vector2( -521, -232 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ActionArea:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1186, 259 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerDeck/Card02:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -753, 0 ), Vector2( -853, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PlayerDeck/Card03:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -653, 0 ), Vector2( -753, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("PlayerDeck/Card04:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -553, 0 ), Vector2( -653, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("PlayerDeck/Card05:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -453, 0 ), Vector2( -553, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("PlayerDeck/Card01:z_index")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("PlayerDeck/Card01:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("LeftPile:texture")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ), ExtResource( 7 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "Tutorial09"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 414, 259 ), Vector2( 937, 490 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ActionArea:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 937, 490 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "Tutorial10"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ActionArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1188, 296 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerDeck/Card01:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerDeck/Card01:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -453, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Light2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 937, 490 ), Vector2( 486, 490 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PlayerDeck/Card01:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "Tutorial11"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ActionArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 486, 490 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "Tutorial12"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ActionArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 586, 255 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 486, 490 ), Vector2( 586, 255 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerDeck/Card01:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -453, 0 ), Vector2( -453, -23 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "Tutorial13"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 486, 461 ), Vector2( 586, 255 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerDeck/Card01:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -453, -23 ), Vector2( -351, -232 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ActionArea:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1184, 246 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=12]
+radius = 111.113
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource( 19 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 490.0, 0.0, 249.0 ],
+"_edit_vertical_guides_": [ 84.0, 937.0, 14.0 ]
+}
+dialog_texts = [ "Welcome to speed!", "in this game, you will have no turns, everything happens at once.", "[n]First, let's see your side.", "This is your deck, click it to get a card.", "[t][n]There you are.", "You can't have more than five cards in your hand.", "Now, let's see how you play.", "[n]You can place a card on one of these fields, if it is higher or lower by one.", "[n]The ace card is the lowest and highest card, so the King is lower and the Two is higher.", "[n]Let's play this Eight, click it.", "[t][n]Now click this Seven card.", "[t][n]That's it, eight is higher than seven by one, so it works.", "[n]Now take another card...", "[t][n]OK, now you got a King card.", "As the Ace is the lowest and highest card you can use the 'King' and 'Two' cards on it.", "[n]Click the King card.", "[t][n]Now click the Ace...", "[t][n]Perfect! Now you know how to play.", "Your goal is getting rid of every card in your hand and deck faster.", "Now go and play!" ]
+
+[node name="Background" type="Sprite" parent="."]
+material = SubResource( 4 )
+position = Vector2( 498, 286 )
+scale = Vector2( 2.2055, 2.2055 )
+texture = SubResource( 5 )
+
+[node name="TutorialAnimator" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 10 )
+anims/Tutorial01 = SubResource( 6 )
+anims/Tutorial02 = SubResource( 11 )
+anims/Tutorial03 = SubResource( 13 )
+anims/Tutorial04 = SubResource( 14 )
+anims/Tutorial05 = SubResource( 15 )
+anims/Tutorial06 = SubResource( 16 )
+anims/Tutorial07 = SubResource( 17 )
+anims/Tutorial08 = SubResource( 18 )
+anims/Tutorial09 = SubResource( 19 )
+anims/Tutorial10 = SubResource( 20 )
+anims/Tutorial11 = SubResource( 21 )
+anims/Tutorial12 = SubResource( 22 )
+anims/Tutorial13 = SubResource( 23 )
+
+[node name="RivalDeck" type="Sprite" parent="."]
+position = Vector2( 84, 0 )
+texture = ExtResource( 17 )
+
+[node name="Card01" type="Sprite" parent="RivalDeck"]
+position = Vector2( 853, 0 )
+rotation = 3.14159
+texture = ExtResource( 16 )
+
+[node name="Card02" type="Sprite" parent="RivalDeck"]
+position = Vector2( 753, 0 )
+rotation = 3.14159
+texture = ExtResource( 13 )
+
+[node name="Card03" type="Sprite" parent="RivalDeck"]
+position = Vector2( 653, 0 )
+rotation = 3.14159
+texture = ExtResource( 14 )
+
+[node name="Card04" type="Sprite" parent="RivalDeck"]
+position = Vector2( 553, 0 )
+rotation = 3.14159
+texture = ExtResource( 10 )
+
+[node name="Card05" type="Sprite" parent="RivalDeck"]
+position = Vector2( 453, 0 )
+rotation = 3.14159
+texture = ExtResource( 6 )
+
+[node name="LeftDeck" type="Sprite" parent="."]
+position = Vector2( 253, 257 )
+texture = ExtResource( 17 )
+
+[node name="RightDeck" type="Sprite" parent="."]
+position = Vector2( 748, 257 )
+texture = ExtResource( 17 )
+
+[node name="LeftPile" type="Sprite" parent="."]
+position = Vector2( 416, 257 )
+texture = ExtResource( 6 )
+
+[node name="RightPile" type="Sprite" parent="."]
+position = Vector2( 586, 257 )
+texture = ExtResource( 12 )
+
+[node name="PlayerDeck" type="Sprite" parent="."]
+position = Vector2( 937, 489 )
+texture = ExtResource( 17 )
+
+[node name="Card01" type="Sprite" parent="PlayerDeck"]
+position = Vector2( -853, 1 )
+texture = ExtResource( 7 )
+
+[node name="Card02" type="Sprite" parent="PlayerDeck"]
+position = Vector2( -753, 0 )
+texture = ExtResource( 11 )
+
+[node name="Card03" type="Sprite" parent="PlayerDeck"]
+position = Vector2( -653, 0 )
+texture = ExtResource( 9 )
+
+[node name="Card04" type="Sprite" parent="PlayerDeck"]
+position = Vector2( -553, 0 )
+texture = ExtResource( 5 )
+
+[node name="Card05" type="Sprite" parent="PlayerDeck"]
+visible = false
+texture = ExtResource( 15 )
+
+[node name="Foreground" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+light_mask = 2
+position = Vector2( 511.5, 298.5 )
+scale = Vector2( 21.18, 12.58 )
+z_index = 1
+texture = ExtResource( 4 )
+
+[node name="Light2D" type="Light2D" parent="."]
+light_mask = 2
+position = Vector2( -152, -55 )
+scale = Vector2( 0.57275, 0.57275 )
+texture = ExtResource( 3 )
+mode = 3
+range_item_cull_mask = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 8 )
+
+[node name="DialogBox" type="NinePatchRect" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+anchor_right = 1.0
+margin_left = 113.0
+margin_top = 20.0
+margin_right = -113.0
+margin_bottom = 151.0
+texture = ExtResource( 18 )
+region_rect = Rect2( 190.162, 97.9868, 100.316, 99.8607 )
+patch_margin_left = 7
+patch_margin_top = 6
+patch_margin_right = 5
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/DialogBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+custom_colors/font_color = Color( 0.392157, 0.392157, 0.392157, 1 )
+autowrap = true
+percent_visible = 0.0
+
+[node name="FadeNode" parent="CanvasLayer" instance=ExtResource( 1 )]
+
+[node name="ActionArea" type="Area2D" parent="."]
+position = Vector2( 1171, 481 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionArea"]
+shape = SubResource( 12 )
+
+[connection signal="input_event" from="ActionArea" to="." method="_on_ActionArea_input_event"]

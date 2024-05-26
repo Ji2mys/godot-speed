@@ -1,0 +1,81 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "BackgroundDeck",
+"language": "GDScript",
+"path": "res://BackgroundDeck.gd"
+}, {
+"base": "Area2D",
+"class": "CardField",
+"language": "GDScript",
+"path": "res://CenterField.gd"
+}, {
+"base": "Area2D",
+"class": "GameCard",
+"language": "GDScript",
+"path": "res://Card.gd"
+}, {
+"base": "Resource",
+"class": "GameDataResource",
+"language": "GDScript",
+"path": "res://Game_data.gd"
+}, {
+"base": "Node2D",
+"class": "GameMainNode",
+"language": "GDScript",
+"path": "res://Main.gd"
+}, {
+"base": "Area2D",
+"class": "PlayerDeck",
+"language": "GDScript",
+"path": "res://PlayerDeck.gd"
+}, {
+"base": "Position2D",
+"class": "PlayerHand",
+"language": "GDScript",
+"path": "res://PlayerHand.gd"
+} ]
+_global_script_class_icons={
+"BackgroundDeck": "",
+"CardField": "",
+"GameCard": "",
+"GameDataResource": "",
+"GameMainNode": "",
+"PlayerDeck": "",
+"PlayerHand": ""
+}
+
+[application]
+
+config/name="Speed Godot"
+run/main_scene="res://Menu.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+GameEnvironment="*res://GameEnvironment.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

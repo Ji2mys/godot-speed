@@ -1,0 +1,292 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Title_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Default_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Menu.gd" type="Script" id=3]
+[ext_resource path="res://FadeNode.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI_textures/greenSheet.png" type="Texture" id=5]
+[ext_resource path="res://UI_textures/greySheet.png" type="Texture" id=6]
+[ext_resource path="res://UI_textures/redSheet.png" type="Texture" id=7]
+
+[sub_resource type="StyleBoxTexture" id=16]
+texture = ExtResource( 5 )
+region_rect = Rect2( 189.674, 48.643, 190.388, 45.189 )
+
+[sub_resource type="StyleBoxTexture" id=17]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0.057, 97.843, 190.284, 45.7598 )
+modulate_color = Color( 0.698039, 0.658824, 0.384314, 1 )
+
+[sub_resource type="StyleBoxTexture" id=18]
+texture = ExtResource( 7 )
+region_rect = Rect2( -0.0111237, 0.637738, 189.781, 44.7581 )
+modulate_color = Color( 0.913725, 0.729412, 0.729412, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 1, 0.760784, 0.501961, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+shadow_size = 1
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.752941, 0.513726, 0.258824, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+shadow_size = 1
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 0.631373, 0.239216, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+shadow_size = 1
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.278431, 0.564706, 0.576471, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+shadow_size = 1
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.3552, 0.727173, 0.74, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+shadow_size = 1
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "Difficulty"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Buttons:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Buttons:custom_constants/separation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 3, 1 ),
+"update": 0,
+"values": [ -35, 20 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Buttons:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 3.03143, 1 ),
+"update": 0,
+"values": [ Vector2( 438, 133 ), Vector2( 437.5, 257.5 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("TutorialButton:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 3, 1 ),
+"update": 0,
+"values": [ Vector2( 435, 320 ), Vector2( 435, 480 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Buttons:custom_constants/separation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -35 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Buttons:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 438, 133 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TutorialButton:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 435, 320 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Buttons:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -194.0
+margin_top = -216.5
+margin_right = 194.0
+margin_bottom = -103.5
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 5
+custom_constants/shadow_offset_y = 5
+custom_fonts/font = ExtResource( 1 )
+text = "SPEED!"
+align = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 438.0
+margin_top = 133.0
+margin_right = 587.001
+margin_bottom = 362.0
+custom_constants/separation = -35
+alignment = 1
+
+[node name="EasyModeButton" type="Button" parent="Buttons"]
+margin_top = 97.0
+margin_right = 149.0
+margin_bottom = 132.0
+custom_styles/normal = SubResource( 16 )
+text = "easy"
+
+[node name="NormalModeButton" type="Button" parent="Buttons"]
+margin_top = 97.0
+margin_right = 149.0
+margin_bottom = 132.0
+custom_styles/normal = SubResource( 17 )
+text = "normal"
+
+[node name="InfernoModeButton" type="Button" parent="Buttons"]
+margin_top = 97.0
+margin_right = 149.0
+margin_bottom = 132.0
+custom_styles/normal = SubResource( 18 )
+text = "inferno"
+
+[node name="StartButton" type="Button" parent="."]
+margin_left = 438.0
+margin_top = 230.0
+margin_right = 586.0
+margin_bottom = 265.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 3 )
+text = "Start!"
+
+[node name="TutorialButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 435.0
+margin_top = 320.0
+margin_right = 590.0
+margin_bottom = 361.0
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 10 )
+text = "tutorial"
+
+[node name="FadeNode" parent="." instance=ExtResource( 4 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+anims/Difficulty = SubResource( 12 )
+anims/RESET = SubResource( 13 )
+
+[connection signal="button_down" from="Buttons/EasyModeButton" to="." method="_on_EasyModeButton_button_down"]
+[connection signal="button_down" from="Buttons/NormalModeButton" to="." method="_on_NormalModeButton_button_down"]
+[connection signal="button_down" from="Buttons/InfernoModeButton" to="." method="_on_InfernoModeButton_button_down"]
+[connection signal="button_down" from="StartButton" to="." method="_on_StartButton_button_down"]
+[connection signal="button_down" from="TutorialButton" to="." method="_on_TutorialButton_button_down"]
